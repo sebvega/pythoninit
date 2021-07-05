@@ -3,13 +3,15 @@ class Usuario:
     def __init__(self, nombre, edad):
         self.nombre=nombre
         self.edad=edad
-    
+
     def registrar(self):
         print('El usuario {} ha sido registrado'.format(self.nombre))
 
     def __str__(self):
         return 'El usuario se llama {} y su edad es {}'.format(self.nombre,self.edad)
-    
+    def consultarTipo(self):
+        print('sin especificar')
+
 class Empleado:
     def __init__(self, area_trabajo):
         self.area_trabajo=area_trabajo
@@ -22,11 +24,14 @@ class Cliente(Usuario):
     def __init__(self, nombre, edad, numero_compras):
         super().__init__( nombre, edad)
         self.numero_compras=numero_compras
-
         #self.nombre=nombre
         #self.edad=edad
+
     def ver_compras():
         print(f'el numero de compras es {self.numero_compras}')
+
+    def consultarTipo(self):
+        print('El tipo del usuario es: cliente')
     
 class Vendedor(Usuario, Empleado):
     def __init__(self, nombre, edad, numero_ventas, area_trabajo):
@@ -39,11 +44,19 @@ class Vendedor(Usuario, Empleado):
     def ver_ventas():
         print(f'el numero de compras es {self.numero_compras}')
 
-cliente=Cliente('lalo',30,22)
-cliente.registrar()
+    def consultarTipo(self):
+        print('el tipo del usuario es: vendedor')
 
-vendedor=Vendedor('luis', 44,20, 'ventas')
-vendedor.generar_reporte()
+usuario=Usuario('Nombre...', 33)
+cliente=Cliente('Nombre...', 33, 100)
+vendedor=Vendedor('Nombre...', 33, 100, 'ventas')
 
-usuario= Usuario('pedro', 18)
-usuario.registrar()
+def mostrarTipo(objeto):
+    objeto.consultarTipo()
+
+mostrarTipo(usuario)
+mostrarTipo(cliente)
+mostrarTipo(vendedor)
+
+for objetos in (usuario,cliente,vendedor):
+    objetos.consultarTipo()
